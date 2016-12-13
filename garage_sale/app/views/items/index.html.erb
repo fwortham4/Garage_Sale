@@ -1,0 +1,11 @@
+<h1>Items:</h1>
+<% if @items.count > 0 %>
+    <% @items.each do |item| %>
+
+      <%= link_to item.name, item_path(item.id) %>
+
+      <%# link_to article.versions.last.title, article_version_path(article.id, article.versions.last.id) %><br>
+    <% end %>
+  <% else %>
+    <p>We have no items for sale at this time. Please comeback later!</p>
+  <% end %>
