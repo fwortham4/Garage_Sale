@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :items
   resources :sessions, only: [:new, :create, :destroy]
 
-  root "users#index"
+  root "items#index"
 
 end
