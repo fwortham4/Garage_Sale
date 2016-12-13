@@ -2,7 +2,7 @@
 <% if @items.count > 0 %>
     <% @items.each do |item| %>
 
-      <%= item.name %>
+      <%= link_to item.name, item_path(item.id) %>
 
       <%# link_to article.versions.last.title, article_version_path(article.id, article.versions.last.id) %><br>
     <% end %>
