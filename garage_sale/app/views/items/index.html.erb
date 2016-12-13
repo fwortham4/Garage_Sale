@@ -1,10 +1,28 @@
 <h1>Items:</h1>
 <% if @items.count > 0 %>
     <% @items.each do |item| %>
+      <div class="item-container">
+        <%= link_to item.name, item_path(item.id) %>
 
-      <%= link_to item.name, item_path(item.id) %>
-
-      <%# link_to article.versions.last.title, article_version_path(article.id, article.versions.last.id) %><br>
+    <!-- --------------------------- -->
+        <% if logged_in? %>
+          <% if current_user.purchasings.find_by(item_id: item.id) %>
+            <span>for $<%= @purchasing.total_price %></span>
+            <form id="remove_from_cart" action="/purchasings" method="POST">
+              <input type="hidden" name="purchasing_id" value="<%= @purchasing.id %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value ="Remove from Cart">
+            </form>
+          <% else %>
+            <form id="add_to_cart" action="/purchasings" method="POST">
+              <input type="submit" value="Add to Cart">
+            </form>
+          <% end %>
+        <% else %>
+          <p>Total Price: $<%= @purchasing.total_price %>.00</p>
+        <% end %>
+    <!-- --------------------------- -->
+      </div><br>
     <% end %>
   <% else %>
     <p>We have no items for sale at this time. Please comeback later!</p>

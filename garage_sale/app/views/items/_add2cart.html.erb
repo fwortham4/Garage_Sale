@@ -1,0 +1,17 @@
+<h4><%= current_user.first_name %>'s Cart:</h4>
+  <% if logged_in? %>
+    <% if current_user.purchasings.find_by(item_id: @item.id) %>
+      <li>$<%= @purchasing.total_price %> per month</li>
+      <form id="add_to_cart" action="/subscriptions" method="post">
+        <input type="hidden" name="purchasing_id" value="<%= @purchasing.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value ="unsubscribe">
+      </form>
+    <% else %>
+      <form id="subscribe" action="/subscriptions/<%= @purchasing.id %>" method="post">
+        <input type="submit" value ="Total: $<%= @purchasing.total_price %>">
+      </form>
+    <% end %>
+  <% else %>
+    <li>$<%= @purchasing.total_price %> per month</li>
+  <% end %>
