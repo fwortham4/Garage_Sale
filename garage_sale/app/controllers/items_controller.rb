@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @purchasing = Purchasing.find(1)
+    @purchasing = Purchasing.find(1) #Must Fix!!!
   end
 
   def new
