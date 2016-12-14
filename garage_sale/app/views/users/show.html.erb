@@ -1,14 +1,10 @@
-<h1>User Profile Page</h1>
+<h1><%= @user.first_name %>'s Profile Page</h1>
 
 <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
 <p>Email: <%= @user.email %></p><br>
 
-<h3><%= @user.first_name %>'s Cart:</h3>
-  <ol>
-    <% @my_cart.each do |cart|  %>
-      <% if cart.user_id == @user.id && cart.item_id == @item.id %>
-      <li><strong><%= @item.name %></strong>       $<%= @item.price %>.00</li><br>
-      <%= @item.description %><br>
-      <% end %>
-    <% end %>
-  </ol>
+<h2>Current Cart:</h2>
+<% @user.items.each do |item| %>
+  <%= link_to item.name, item_path(item.id) %><br>
+<% end %>
+<br><button>Ready to Checkout</button>
