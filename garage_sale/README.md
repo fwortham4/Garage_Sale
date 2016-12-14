@@ -1,6 +1,6 @@
 # Garage Sale
 
-A simple garage sale application that utilizes Braintree's v.zero API.
+A simple garage sale application.
 
 * Ruby version 2.3.0
 
